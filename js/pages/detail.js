@@ -37,8 +37,8 @@ const DetailPage = {
           <button class="back-link" onclick="Router.go('home')">← 返回首页</button>
         </div>
         <div class="detail-hero-right">
-          <div class="detail-hero-poster">
-            <span class="detail-hero-poster-icon">${show.logo}</span>
+          <div class="detail-hero-poster"${show.poster ? ` style="background-image:url('${show.poster}');background-size:cover;background-position:center"` : ''}>
+            ${show.poster ? '' : `<span class="detail-hero-poster-icon">${show.logo}</span>`}
           </div>
         </div>
       </div>
