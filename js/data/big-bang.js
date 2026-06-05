@@ -11,7 +11,7 @@ const SHOWS_DATA = {
     seasons: 12,
     episodes: 279,
     logo: '🎭',
-    poster: 'assets/shows/big-bang-theory/poster.png',
+    poster: 'assets/shows/big-bang-theory/show.poster.jpg',
     defaultLocationId: 'shangqiu-yizhong',
     tagline: 'Geek is the new cool.',
     rating: '9.1',
