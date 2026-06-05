@@ -17,6 +17,8 @@
 }
 .hero-carousel-bg {
   position: absolute; inset: 0; pointer-events: none;
+  background-size: cover;
+  background-position: center;
 }
 .hero-carousel-glow {
   position: absolute; bottom: -20%; left: 10%; width: 600px; height: 400px;

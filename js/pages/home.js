@@ -41,9 +41,10 @@ const HomePage = {
   _renderCarousel(shows) {
     if (shows.length === 0) return '';
     const show = shows[this.carouselIndex % shows.length];
+    const bgUrl = placeholder('', '12121a', show.logo, 1920, 1080);
     return `
       <div class="hero-carousel" id="hero-carousel">
-        <div class="hero-carousel-bg" style="background-image:linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%)"></div>
+        <div class="hero-carousel-bg" style="background-image:linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%), url('${bgUrl}')"></div>
         <div class="hero-carousel-glow" aria-hidden="true"></div>
         <div class="glass-panel">
           <div class="glass-panel-tags">
@@ -78,6 +79,7 @@ const HomePage = {
     const desc = carousel.querySelector('.glass-panel-desc');
     const tags = carousel.querySelector('.glass-panel-tags');
     const btn = carousel.querySelector('.glass-panel-btn');
+    const bg = carousel.querySelector('.hero-carousel-bg');
 
     carousel.style.opacity = '0';
     setTimeout(() => {
@@ -90,6 +92,10 @@ const HomePage = {
         `;
       }
       if (btn) btn.dataset.id = show.id;
+      if (bg) {
+        const newBgUrl = placeholder('', '12121a', show.logo, 1920, 1080);
+        bg.style.backgroundImage = `linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%), url('${newBgUrl}')`;
+      }
       carousel.querySelectorAll('.carousel-dot').forEach((d, i) => {
         d.classList.toggle('active', i === this.carouselIndex);
       });
