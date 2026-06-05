@@ -1,0 +1,53 @@
+/* ════════════════════════════════════════
+   SHARED COMPONENTS
+   ════════════════════════════════════════ */
+
+/* ── Pick list (used in modal) ── */
+.pick-list {
+  display: flex; flex-direction: column; gap: 4px;
+  max-height: 240px; overflow-y: auto;
+}
+.pick-item {
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  background: var(--bg-card); border: 1px solid transparent;
+  font-size: 13px; cursor: pointer;
+  display: flex; align-items: center; gap: 10px;
+  color: var(--text-secondary); transition: all 200ms;
+}
+.pick-item:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+.pick-item.selected { border-color: var(--gold); background: var(--gold-soft); color: var(--text-primary); }
+.pick-item.taken { opacity: 0.25; cursor: not-allowed; text-decoration: line-through; }
+.pick-icon { font-size: 18px; flex-shrink: 0; }
+.pick-name { flex: 1; }
+.pick-badge {
+  font-size: 10px; padding: 2px 8px; border-radius: 4px;
+  background: rgba(255,255,255,0.04); color: var(--text-muted);
+}
+
+/* ── Search results (in modal) ── */
+.search-results {
+  max-height: 200px; overflow-y: auto; margin-top: 8px;
+  border-radius: var(--radius-md); background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+.search-result-item {
+  padding: 10px 14px; font-size: 13px; cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  display: flex; align-items: center; gap: 8px;
+  color: var(--text-secondary); transition: all 200ms;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+.search-result-item .sr-icon { font-size: 16px; flex-shrink: 0; }
+.search-result-item .sr-name { flex: 1; }
+.search-result-item .sr-type { font-size: 10px; color: var(--text-muted); }
+
+/* ── Icon picker (in modal) ── */
+.icon-picker { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.icon-pick-btn {
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg-card);
+  font-size: 18px; cursor: pointer; transition: all 200ms;
+}
+.icon-pick-btn:hover { background: var(--bg-card-hover); }
+.icon-pick-btn.selected { border-color: var(--gold); background: var(--gold-soft); }
