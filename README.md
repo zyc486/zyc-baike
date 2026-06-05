@@ -12,4 +12,4 @@
 
 ## 在线访问
 
-[点击访问](https://zyc486.github.io/zyc-/)
+[点击访问](https://zyc486.github.io/zyc-baike/)
