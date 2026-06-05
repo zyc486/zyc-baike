@@ -67,7 +67,7 @@ const DetailPage = {
     const cards = show.cast.map((c, i) => `
       <div class="cast-card stagger-${i % 3}">
         <div class="cast-card-img">
-          <img src="${placeholder(c.image, c.imageColor, c.avatar || '?', 300, 380)}"
+          <img src="${c.image || placeholder(c.image, c.imageColor, c.avatar || '?', 300, 380)}"
                alt="${esc(c.nameCn || c.name)}" loading="lazy">
         </div>
         <div class="cast-card-overlay">
@@ -95,7 +95,7 @@ const DetailPage = {
     if (!show.scenes || show.scenes.length === 0) return '';
     const cards = show.scenes.map(s => `
       <div class="scene-card">
-        <div class="scene-icon-bar">${s.icon || '🎬'}</div>
+        ${s.image ? `<div class="scene-img"><img src="${s.image}" alt="${esc(s.name)}" loading="lazy"></div>` : `<div class="scene-icon-bar">${s.icon || '🎬'}</div>`}
         <h4>${esc(s.name)}</h4>
         <p>${esc(s.description)}</p>
         ${s.showVsReal ? `

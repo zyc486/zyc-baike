@@ -169,8 +169,8 @@ const HomePage = {
 
     const cards = filtered.map((show, i) => `
       <article class="show-card" data-id="${show.id}" style="animation-delay:${i * 60}ms">
-        <div class="show-card-poster">
-          <span class="show-card-logo">${show.logo}</span>
+        <div class="show-card-poster"${show.poster ? ` style="background-image:url('${show.poster}');background-size:cover;background-position:center"` : ''}>
+          ${show.poster ? '' : `<span class="show-card-logo">${show.logo}</span>`}
         </div>
         <div class="show-card-info-overlay">
           <h3 class="show-card-title">${esc(show.title)}</h3>
