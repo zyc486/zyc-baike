@@ -1,21 +1,20 @@
 /* ════════════════════════════════════════
-   Home Page — Hero + Search + Show Grid
+   Home Page — Carousel + Poster Grid
    ════════════════════════════════════════ */
 
 const HomePage = {
   filter: 'all',
   search: '',
+  carouselIndex: 0,
+  _carouselTimer: null,
 
   render() {
     const app = document.getElementById('app');
     const allShows = this._loadShows();
 
     app.innerHTML = `
-      <div class="hero">
-        <div class="hero-glow" aria-hidden="true"></div>
-        <div class="hero-overline">影视百科</div>
-        <h1 class="hero-title">探索<span class="highlight">光影</span>的世界</h1>
-        <p class="hero-desc">收录你喜爱的每一部剧集。深入了解演员、场景、剧情、冷知识，构建属于你自己的影视百科。</p>
+      ${this._renderCarousel(allShows)}
+      <div class="home-filters-wrap">
         <div class="search-box">
           <span class="search-icon" aria-hidden="true">⌕</span>
           <input type="text" id="search-input" placeholder="搜索剧集名称、演员、类型…"
@@ -27,6 +26,7 @@ const HomePage = {
     `;
 
     this._bindEvents(app, allShows);
+    this._startCarousel(allShows);
   },
 
   _loadShows() {
@@ -36,6 +36,65 @@ const HomePage = {
       if (!data) return null;
       return { ...data, locationId: entry.locationId };
     }).filter(Boolean);
+  },
+
+  _renderCarousel(shows) {
+    if (shows.length === 0) return '';
+    const show = shows[this.carouselIndex % shows.length];
+    return `
+      <div class="hero-carousel" id="hero-carousel">
+        <div class="hero-carousel-bg" style="background-image:linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%)"></div>
+        <div class="hero-carousel-glow" aria-hidden="true"></div>
+        <div class="glass-panel">
+          <div class="glass-panel-tags">
+            ${show.rating ? `<span class="tag tag-rating">${show.rating} ★</span>` : ''}
+            <span class="tag tag-seasons">${show.seasons}季 · ${show.episodes}集</span>
+          </div>
+          <h1 class="glass-panel-title">${esc(show.title)}</h1>
+          <p class="glass-panel-desc">${esc(show.description)}</p>
+          <button class="glass-panel-btn" data-id="${show.id}">立即探索 →</button>
+        </div>
+        <div class="carousel-dots" id="carousel-dots">
+          ${shows.map((_, i) => `<span class="carousel-dot ${i === this.carouselIndex ? 'active' : ''}" data-index="${i}"></span>`).join('')}
+        </div>
+      </div>
+    `;
+  },
+
+  _startCarousel(shows) {
+    if (shows.length <= 1) return;
+    clearInterval(this._carouselTimer);
+    this._carouselTimer = setInterval(() => {
+      this.carouselIndex = (this.carouselIndex + 1) % shows.length;
+      this._updateCarousel(shows);
+    }, 5000);
+  },
+
+  _updateCarousel(shows) {
+    const carousel = document.getElementById('hero-carousel');
+    if (!carousel) return;
+    const show = shows[this.carouselIndex];
+    const title = carousel.querySelector('.glass-panel-title');
+    const desc = carousel.querySelector('.glass-panel-desc');
+    const tags = carousel.querySelector('.glass-panel-tags');
+    const btn = carousel.querySelector('.glass-panel-btn');
+
+    carousel.style.opacity = '0';
+    setTimeout(() => {
+      if (title) title.textContent = show.title;
+      if (desc) desc.textContent = show.description;
+      if (tags) {
+        tags.innerHTML = `
+          ${show.rating ? `<span class="tag tag-rating">${show.rating} ★</span>` : ''}
+          <span class="tag tag-seasons">${show.seasons}季 · ${show.episodes}集</span>
+        `;
+      }
+      if (btn) btn.dataset.id = show.id;
+      carousel.querySelectorAll('.carousel-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === this.carouselIndex);
+      });
+      carousel.style.opacity = '1';
+    }, 300);
   },
 
   _getFiltered(shows) {
@@ -103,23 +162,13 @@ const HomePage = {
     }
 
     const cards = filtered.map((show, i) => `
-      <article class="show-card" data-id="${show.id}" style="animation-delay:${i * 50}ms">
-        <div class="show-card-top">
-          <div class="show-card-logo">${show.logo}</div>
-          <div class="show-card-info">
-            <h3 class="show-card-title">${esc(show.title)}</h3>
-            <div class="show-card-sub">${esc(show.titleEn)} · ${esc(show.year)}</div>
-            <div class="show-card-tags">
-              ${show.rating ? `<span class="tag tag-rating">${show.rating} ★</span>` : ''}
-              <span class="tag tag-seasons">${show.seasons}季 · ${show.episodes}集</span>
-              ${show.network ? `<span class="tag tag-network">${esc(show.network)}</span>` : ''}
-            </div>
-          </div>
+      <article class="show-card" data-id="${show.id}" style="animation-delay:${i * 60}ms">
+        <div class="show-card-poster">
+          <span class="show-card-logo">${show.logo}</span>
         </div>
-        <p class="show-card-desc">${esc(show.description)}</p>
-        <div class="show-card-footer">
-          <span class="show-card-action">查看详情 →</span>
-          <span class="show-card-meta">${show.cast ? show.cast.length + '位演员' : ''}</span>
+        <div class="show-card-info-overlay">
+          <h3 class="show-card-title">${esc(show.title)}</h3>
+          <div class="show-card-meta">${esc(show.year)} · ${show.rating || ''} ★</div>
         </div>
       </article>
     `).join('');
@@ -141,8 +190,6 @@ const HomePage = {
         this.search = e.target.value;
         this._refreshGrid(app, allShows);
       });
-      // Auto-focus search on load
-      setTimeout(() => searchInput.focus(), 100);
     }
 
     // Filters
@@ -150,7 +197,6 @@ const HomePage = {
       chip.addEventListener('click', () => {
         this.filter = chip.dataset.filter;
         this._refreshGrid(app, allShows);
-        // Update filter chip styles
         app.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
         chip.classList.add('active');
       });
@@ -162,13 +208,30 @@ const HomePage = {
         Router.go('detail', card.dataset.id);
       });
     });
+
+    // Carousel explore button
+    const panelBtn = app.querySelector('.glass-panel-btn');
+    if (panelBtn) {
+      panelBtn.addEventListener('click', () => {
+        Router.go('detail', panelBtn.dataset.id);
+      });
+    }
+
+    // Carousel dots
+    app.querySelectorAll('.carousel-dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        this.carouselIndex = parseInt(dot.dataset.index);
+        this._updateCarousel(allShows);
+        clearInterval(this._carouselTimer);
+        this._startCarousel(allShows);
+      });
+    });
   },
 
   _refreshGrid(app, allShows) {
     const gridArea = app.querySelector('#grid-area');
     if (gridArea) {
       gridArea.innerHTML = this._renderGrid(allShows);
-      // Re-bind card clicks
       gridArea.querySelectorAll('.show-card').forEach(card => {
         card.addEventListener('click', () => {
           Router.go('detail', card.dataset.id);
