@@ -41,7 +41,7 @@ const HomePage = {
   _renderCarousel(shows) {
     if (shows.length === 0) return '';
     const show = shows[this.carouselIndex % shows.length];
-    const bgUrl = placeholder('', '12121a', show.logo, 1920, 1080);
+    const bgUrl = show.poster || placeholder('', '12121a', show.logo, 1920, 1080);
     return `
       <div class="hero-carousel" id="hero-carousel">
         <div class="hero-carousel-bg" style="background-image:linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%), url('${bgUrl}')"></div>
@@ -93,7 +93,7 @@ const HomePage = {
       }
       if (btn) btn.dataset.id = show.id;
       if (bg) {
-        const newBgUrl = placeholder('', '12121a', show.logo, 1920, 1080);
+        const newBgUrl = show.poster || placeholder('', '12121a', show.logo, 1920, 1080);
         bg.style.backgroundImage = `linear-gradient(180deg, transparent 30%, rgba(10,10,15,0.85) 100%), url('${newBgUrl}')`;
       }
       carousel.querySelectorAll('.carousel-dot').forEach((d, i) => {
