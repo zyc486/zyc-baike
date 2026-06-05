@@ -31,7 +31,7 @@
   margin-bottom: 8px;
 }
 .detail-hero-sub {
-  font-size: 14px; color: var(--text-muted);
+  font-size: 15px; color: var(--text-muted);
   margin-bottom: 20px;
 }
 .detail-hero-tagline {
@@ -42,12 +42,12 @@
   padding-left: 16px;
 }
 .detail-hero-desc {
-  font-size: 14px; color: var(--text-secondary);
-  line-height: 1.9; margin-bottom: 20px;
+  font-size: 15px; font-weight: 500; color: var(--text-secondary);
+  line-height: 1.8; margin-bottom: 20px;
 }
 .detail-hero-genres { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
 .genre-chip {
-  padding: 4px 12px; border-radius: 20px; font-size: 11px;
+  padding: 4px 12px; border-radius: 20px; font-size: 13px;
   background: rgba(255,255,255,0.05); color: var(--text-muted);
   border: 1px solid var(--border);
 }
@@ -103,10 +103,10 @@
   font-family: var(--font-display); font-size: 22px; font-weight: 700;
 }
 .section-count {
-  font-size: 11px; color: var(--text-muted); font-weight: 600;
+  font-size: 13px; color: var(--text-muted); font-weight: 600;
   padding: 2px 8px; background: var(--bg-card); border-radius: 20px;
 }
-.section-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+.section-subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; }
 
 /* ── Cast — staggered gallery ── */
 .cast-gallery {
@@ -145,15 +145,15 @@
   color: #fff; margin-bottom: 2px;
 }
 .cast-card-overlay .cast-role {
-  font-size: 12px; color: var(--gold); margin-bottom: 8px;
+  font-size: 13px; color: var(--gold); margin-bottom: 8px;
 }
 .cast-card-overlay .cast-bio {
-  font-size: 12px; color: rgba(255,255,255,0.75);
+  font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.75);
   line-height: 1.7; margin-bottom: 6px;
   display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
 }
 .cast-card-overlay .cast-funfact {
-  font-size: 11px; color: rgba(255,255,255,0.5);
+  font-size: 13px; color: rgba(255,255,255,0.5);
   line-height: 1.5;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
@@ -175,9 +175,9 @@
   font-family: var(--font-display); font-size: 15px; font-weight: 600;
   padding: 12px 20px 4px;
 }
-.scene-card > p { font-size: 12px; color: var(--text-secondary); line-height: 1.7; padding: 0 20px 16px; }
+.scene-card > p { font-size: 15px; font-weight: 500; color: var(--text-secondary); line-height: 1.7; padding: 0 20px 16px; }
 .scene-vs {
-  font-size: 11px; color: var(--text-muted); line-height: 1.6;
+  font-size: 13px; color: var(--text-muted); line-height: 1.6;
   padding: 12px 20px; border-top: 1px solid var(--border);
   background: rgba(255,255,255,0.01);
 }
@@ -201,12 +201,12 @@
   box-shadow: 0 0 8px rgba(200,160,80,0.2);
 }
 .timeline-season {
-  font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 6px;
+  font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 6px;
 }
-.timeline-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+.timeline-desc { font-size: 15px; font-weight: 500; color: var(--text-secondary); line-height: 1.8; }
 .timeline-highlight {
   display: inline-block; margin-top: 8px; padding: 4px 10px;
-  font-size: 11px; color: var(--gold); background: var(--gold-soft);
+  font-size: 13px; color: var(--gold); background: var(--gold-soft);
   border-radius: var(--radius-sm);
 }
 
@@ -229,7 +229,7 @@
   text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent);
   padding: 2px 8px; background: var(--accent-soft); border-radius: 4px; margin-bottom: 8px;
 }
-.trivia-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.8; }
+.trivia-card p { font-size: 15px; font-weight: 500; color: var(--text-secondary); line-height: 1.8; }
 
 /* ── Fashion ── */
 .fashion-grid {
@@ -243,11 +243,11 @@
 .fashion-card:hover { background: var(--bg-card-hover); }
 .fashion-icon-bar { padding: 24px 0 8px; text-align: center; font-size: 40px; }
 .fashion-card h4 {
-  font-family: var(--font-display); font-size: 14px; font-weight: 600;
+  font-family: var(--font-display); font-size: 15px; font-weight: 600;
   padding: 8px 20px 4px; text-align: center;
 }
 .fashion-card p {
-  font-size: 12px; color: var(--text-secondary); line-height: 1.8;
+  font-size: 15px; font-weight: 500; color: var(--text-secondary); line-height: 1.8;
   padding: 0 20px 20px;
 }
 
@@ -266,8 +266,8 @@
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; flex-shrink: 0;
 }
-.loc-info h4 { font-family: var(--font-display); font-size: 13px; font-weight: 600; margin-bottom: 2px; }
-.loc-info p { font-size: 12px; color: var(--text-secondary); line-height: 1.6; }
+.loc-info h4 { font-family: var(--font-display); font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.loc-info p { font-size: 15px; font-weight: 500; color: var(--text-secondary); line-height: 1.7; }
 
 /* ── Back to top ── */
 .back-to-top {
