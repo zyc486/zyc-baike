@@ -11,7 +11,7 @@
   padding: 0 40px; height: 48px;
   display: flex; align-items: center; gap: 16px;
   transform: translateY(-100%); opacity: 0;
-  transition: all 300ms var(--ease);
+  transition: all 300ms var(--ease-out);
 }
 .detail-header.visible { transform: translateY(0); opacity: 1; }
 .detail-header-logo { font-size: 20px; }
@@ -77,11 +77,11 @@
 .sidebar-link {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 0; cursor: pointer; border: none; background: none;
-  text-align: left; width: 100%; transition: all 200ms var(--ease);
+  text-align: left; width: 100%; transition: all 200ms var(--ease-out);
 }
 .sidebar-link-line {
   width: 2px; height: 16px; border-radius: 1px;
-  background: var(--border); transition: all 300ms var(--ease); flex-shrink: 0;
+  background: var(--border); transition: all 300ms var(--ease-out); flex-shrink: 0;
 }
 .sidebar-link-text {
   font-size: 12px; color: var(--text-muted); transition: color 200ms;
@@ -98,7 +98,7 @@
 .detail-section {
   padding: 48px 0;
   border-top: 1px solid var(--border);
-  animation: fadeInUp 500ms var(--ease) both;
+  animation: fadeInUp 500ms var(--ease-out) both;
 }
 .detail-section:first-child { border-top: none; padding-top: 0; }
 .section-head {
@@ -118,7 +118,7 @@
 .cast-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 24px;
-  transition: all 200ms var(--ease);
+  transition: all 200ms var(--ease-out);
 }
 .cast-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
 .cast-top { display: flex; gap: 20px; align-items: flex-start; }
@@ -156,7 +156,7 @@
 .scene-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); overflow: hidden;
-  transition: all 200ms var(--ease);
+  transition: all 200ms var(--ease-out);
 }
 .scene-card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
 .scene-icon-bar {
@@ -208,7 +208,7 @@
 .trivia-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 20px;
-  transition: all 200ms var(--ease);
+  transition: all 200ms var(--ease-out);
 }
 .trivia-card:hover { background: var(--bg-card-hover); }
 .trivia-num {
@@ -229,7 +229,7 @@
 .fashion-card {
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-lg); overflow: hidden;
-  transition: all 200ms var(--ease);
+  transition: all 200ms var(--ease-out);
 }
 .fashion-card:hover { background: var(--bg-card-hover); }
 .fashion-icon-bar { padding: 24px 0 8px; text-align: center; font-size: 40px; }
@@ -248,7 +248,7 @@
   background: var(--bg-card); border: 1px solid var(--border);
   border-radius: var(--radius-md); padding: 18px 22px;
   display: flex; align-items: center; gap: 14px;
-  transition: all 200ms var(--ease);
+  transition: all 200ms var(--ease-out);
 }
 .location-card:hover { background: var(--bg-card-hover); }
 .loc-icon {
@@ -268,7 +268,7 @@
   color: var(--text-secondary); font-size: 18px; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
-  transition: all 300ms var(--ease);
+  transition: all 300ms var(--ease-out);
 }
 .back-to-top.visible { opacity: 1; pointer-events: all; }
 .back-to-top:hover { background: var(--bg-card-hover); color: var(--text-primary); }

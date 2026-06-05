@@ -28,4 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start router
   Router.init();
+
+  // Scroll-aware nav bar
+  const nav = document.querySelector('.nav-bar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
 });

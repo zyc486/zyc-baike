@@ -4,7 +4,11 @@ html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  background: var(--bg-deep);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, #1a1028 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 100%, #0f1a2a 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 90% 80%, #1a0f14 0%, transparent 50%),
+    var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -22,22 +26,23 @@ body {
   position: fixed; inset: 0; z-index: 9998; pointer-events: none;
   background: radial-gradient(ellipse at center, transparent 40%, rgba(10,8,14,0.5) 100%);
 }
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(circle at 25% 15%, rgba(160,48,64,0.04) 0%, transparent 50%),
-    radial-gradient(circle at 75% 85%, rgba(200,160,80,0.03) 0%, transparent 40%);
-}
 
 /* ── Nav ── */
 .nav-bar {
   position: fixed; top: 0; left: 0; right: 0; height: 56px;
   padding: 0 28px; display: flex; align-items: center; justify-content: space-between;
   z-index: 1000;
-  background: rgba(20,18,24,0.85);
-  backdrop-filter: blur(30px) saturate(1.2);
-  -webkit-backdrop-filter: blur(30px) saturate(1.2);
-  border-bottom: 1px solid var(--border);
+  background: transparent;
+  border-bottom: none;
+  transition: background var(--duration) var(--ease-out),
+              border-bottom var(--duration) var(--ease-out),
+              backdrop-filter var(--duration) var(--ease-out);
+}
+.nav-bar.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: var(--glass-border);
 }
 .nav-logo {
   font-family: var(--font-display); font-size: 15px; font-weight: 600;
@@ -46,14 +51,6 @@ body::before {
 }
 .nav-logo-icon { color: var(--accent); font-size: 18px; }
 .nav-right { display: flex; align-items: center; gap: 12px; }
-.nav-search-btn {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: transparent; border: 1px solid var(--border);
-  color: var(--text-secondary); font-size: 18px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 200ms var(--ease);
-}
-.nav-search-btn:hover { background: var(--bg-card-hover); color: var(--text-primary); }
 
 /* ── Page ── */
 #app { position: relative; z-index: 1; min-height: 100vh; }
@@ -71,7 +68,7 @@ body::before {
   border-radius: var(--radius-xl); padding: 32px;
   width: 90%; max-width: 420px; max-height: 80vh; overflow-y: auto;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  transform: translateY(16px); transition: transform 300ms var(--ease);
+  transform: translateY(16px); transition: transform 300ms var(--ease-out);
 }
 .modal-overlay.active .modal-content { transform: translateY(0); }
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
