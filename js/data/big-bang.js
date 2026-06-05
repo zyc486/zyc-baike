@@ -106,7 +106,7 @@ const SHOWS_DATA = {
         name: '4A 公寓',
         description: 'Sheldon和Leonard的公寓，全剧最核心的场景。走廊上的白板写满公式，沙发上永远有Sheldon的专属座位。公寓门口的走廊是无数经典敲门梗的发生地——"Knock knock knock, Penny"三连敲已成为美剧史上最经典的台词之一。',
         icon: '🏠',
-        image: '',
+        image: 'assets/shows/big-bang-theory/scene-4a.jpg',
         imageColor: 'd4c4a0',
         showVsReal: '公寓内部在华纳兄弟摄影棚搭建，走廊和电梯布景使用了真实的建筑结构。那个"坏了12年"的电梯是真电梯，只是被剧组故意停用。'
       },
